@@ -19,7 +19,7 @@ func (s *Server) initializeRoutes() {
 
 	// Saunas
 	s.Router.HandleFunc("/saunas", middlewares.SetMiddlewareJSON(s.CreateSauna)).Methods("POST")
-	s.Router.HandleFunc("/saunas", middlewares.SetMiddlewareJSON(s.GetSaunas)).Methods("GET")
+	s.Router.HandleFunc("/saunas", middlewares.SetMiddlewareJSON(s.GetSaunaList)).Methods("GET")
 	s.Router.HandleFunc("/saunas/{id}", middlewares.SetMiddlewareJSON(s.GetSauna)).Methods("GET")
 	s.Router.HandleFunc("/saunas/{id}", middlewares.SetMiddlewareJSON(middlewares.SetMiddlewareAuthentication(s.UpdateSauna))).Methods("PUT")
 	s.Router.HandleFunc("/saunas/{id}", middlewares.SetMiddlewareAuthentication(s.DeleteSauna)).Methods("DELETE")
