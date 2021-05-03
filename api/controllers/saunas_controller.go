@@ -46,7 +46,7 @@ func (server *Server) CreateSauna(w http.ResponseWriter, r *http.Request) {
 		responses.ERROR(w, http.StatusUnauthorized, errors.New(http.StatusText(http.StatusUnauthorized)))
 		return
 	}
-	postCreated, err := sauna.SaveSauna(server.DB)
+	postCreated, err := sauna.CreateSauna(server.DB)
 	if err != nil {
 		responses.ERROR(w, http.StatusInternalServerError, err)
 		return
@@ -55,7 +55,7 @@ func (server *Server) CreateSauna(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusCreated, postCreated)
 }
 
-func (server *Server) GetSaunas(w http.ResponseWriter, r *http.Request) {
+func (server *Server) GetSaunaList(w http.ResponseWriter, r *http.Request) {
 	sauna := models.Sauna{}
 
 	saunas, err := sauna.FindAllSaunas(server.DB)
